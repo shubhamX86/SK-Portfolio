@@ -1,15 +1,34 @@
-/* ===============================
-   MOBILE MENU
-================================ */
+/* =====================================================
+   SELECT ELEMENTS
+===================================================== */
 
 const menuBtn = document.getElementById("menuBtn");
 
 const navbar = document.getElementById("navbar");
 
+const themeBtn = document.getElementById("themeBtn");
+
+const navLinks =
+    document.querySelectorAll(".navbar a");
+
+const sections =
+    document.querySelectorAll("section");
+
+const contactForm =
+    document.getElementById("contactForm");
+
+const formMessage =
+    document.getElementById("formMessage");
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
 
 menuBtn.addEventListener("click", () => {
 
     navbar.classList.toggle("open");
+
 
     if (navbar.classList.contains("open")) {
 
@@ -24,13 +43,9 @@ menuBtn.addEventListener("click", () => {
 });
 
 
-/* ===============================
-   CLOSE MENU AFTER CLICK
-================================ */
-
-const navLinks =
-    document.querySelectorAll(".navbar a");
-
+/* =====================================================
+   CLOSE MOBILE MENU
+===================================================== */
 
 navLinks.forEach(link => {
 
@@ -45,22 +60,20 @@ navLinks.forEach(link => {
 });
 
 
-/* ===============================
-   ACTIVE NAVBAR
-================================ */
-
-const sections =
-    document.querySelectorAll("section");
-
+/* =====================================================
+   ACTIVE NAVIGATION
+===================================================== */
 
 window.addEventListener("scroll", () => {
 
     let currentSection = "";
 
+
     sections.forEach(section => {
 
         const sectionTop =
-            section.offsetTop - 150;
+            section.offsetTop - 160;
+
 
         if (window.scrollY >= sectionTop) {
 
@@ -75,6 +88,7 @@ window.addEventListener("scroll", () => {
 
         link.classList.remove("active");
 
+
         if (
             link.getAttribute("href")
             === `#${currentSection}`
@@ -88,19 +102,19 @@ window.addEventListener("scroll", () => {
 
 });
 
-/* =================================
+
+/* =====================================================
    DARK / LIGHT MODE
-================================= */
-
-const themeBtn =
-    document.getElementById("themeBtn");
+===================================================== */
 
 
-/* Check previously saved theme */
+/* Get saved theme */
 
 const savedTheme =
     localStorage.getItem("portfolioTheme");
 
+
+/* Apply saved theme */
 
 if (savedTheme === "light") {
 
@@ -110,27 +124,30 @@ if (savedTheme === "light") {
 
 } else {
 
+    document.body.classList.remove("light");
+
     themeBtn.textContent = "☀️";
 
 }
 
 
-/* Toggle theme */
+/* Toggle Theme */
 
 themeBtn.addEventListener("click", () => {
 
     document.body.classList.toggle("light");
 
 
-    const isLight =
+    const lightMode =
         document.body.classList.contains("light");
 
 
-    if (isLight) {
+    if (lightMode) {
 
         /* LIGHT MODE */
 
         themeBtn.textContent = "🌙";
+
 
         localStorage.setItem(
             "portfolioTheme",
@@ -143,6 +160,7 @@ themeBtn.addEventListener("click", () => {
 
         themeBtn.textContent = "☀️";
 
+
         localStorage.setItem(
             "portfolioTheme",
             "dark"
@@ -153,39 +171,59 @@ themeBtn.addEventListener("click", () => {
 });
 
 
-/* ===============================
+/* =====================================================
    CONTACT FORM
-================================ */
+===================================================== */
 
-const contactForm =
-    document.getElementById("contactForm");
+if (contactForm) {
 
+    contactForm.addEventListener(
+        "submit",
+        function(event) {
 
-const formMessage =
-    document.getElementById("formMessage");
-
-
-contactForm.addEventListener(
-    "submit",
-    function(event) {
-
-        event.preventDefault();
-
-        const name =
-            document.getElementById("name").value;
-
-        formMessage.textContent =
-            `Thank you ${name}! Your message has been received.`;
-
-        contactForm.reset();
-
-    }
-);
+            event.preventDefault();
 
 
-/* ===============================
+            const name =
+                document
+                    .getElementById("name")
+                    .value
+                    .trim();
+
+
+            if (name === "") {
+
+                formMessage.textContent =
+                    "Please enter your name.";
+
+                return;
+
+            }
+
+
+            formMessage.textContent =
+                `Thank you ${name}! Your message has been received.`;
+
+
+            contactForm.reset();
+
+        }
+    );
+
+}
+
+
+/* =====================================================
    CURRENT YEAR
-================================ */
+===================================================== */
 
-document.getElementById("year").textContent =
-    new Date().getFullYear();
+const yearElement =
+    document.getElementById("year");
+
+
+if (yearElement) {
+
+    yearElement.textContent =
+        new Date().getFullYear();
+
+}
