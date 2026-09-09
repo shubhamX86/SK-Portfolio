@@ -13,6 +13,7 @@
 
 :root {
 
+      /* Dark Mode */
     --background: #070707;
 
     --card: #111111;
@@ -1326,6 +1327,116 @@ footer {
     .skills-container {
 
         grid-template-columns: 1fr;
+
+    }
+
+}
+/* =================================
+   LIGHT MODE
+================================= */
+
+body.light {
+
+    --background: #f5f5f5;
+
+    --card: #ffffff;
+
+    --card-light: #eeeeee;
+
+    --text: #111111;
+
+    --text-light: #555555;
+
+    --border: rgba(0,0,0,0.10);
+
+}
+
+
+/* =================================
+   THEME BUTTON
+================================= */
+
+.theme-btn {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: all 0.3s ease;
+
+}
+
+
+.theme-btn:hover {
+
+    background: var(--yellow);
+
+    color: #000;
+
+    transform: rotate(20deg);
+
+}
+
+
+/* LIGHT MODE HEADER */
+
+body.light .header {
+
+    background: rgba(245,245,245,0.88);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+/* LIGHT MODE FORM */
+
+body.light .contact-form input,
+body.light .contact-form textarea {
+
+    background: #f5f5f5;
+
+    color: #111;
+
+}
+
+
+/* LIGHT MODE PROFILE BORDER */
+
+body.light .image-circle img {
+
+    border-color: var(--background);
+
+}
+
+
+/* MOBILE BUTTON */
+
+@media (max-width: 850px) {
+
+    .theme-btn {
+
+        width: 40px;
+
+        height: 40px;
 
     }
 

@@ -88,28 +88,65 @@ window.addEventListener("scroll", () => {
 
 });
 
-
-/* ===============================
+/* =================================
    DARK / LIGHT MODE
-================================ */
+================================= */
 
 const themeBtn =
     document.getElementById("themeBtn");
 
 
+/* Check previously saved theme */
+
+const savedTheme =
+    localStorage.getItem("portfolioTheme");
+
+
+if (savedTheme === "light") {
+
+    document.body.classList.add("light");
+
+    themeBtn.textContent = "🌙";
+
+} else {
+
+    themeBtn.textContent = "☀️";
+
+}
+
+
+/* Toggle theme */
+
 themeBtn.addEventListener("click", () => {
 
     document.body.classList.toggle("light");
 
-    if (
-        document.body.classList.contains("light")
-    ) {
 
-        themeBtn.textContent = "☾";
+    const isLight =
+        document.body.classList.contains("light");
+
+
+    if (isLight) {
+
+        /* LIGHT MODE */
+
+        themeBtn.textContent = "🌙";
+
+        localStorage.setItem(
+            "portfolioTheme",
+            "light"
+        );
 
     } else {
 
-        themeBtn.textContent = "☀";
+        /* DARK MODE */
+
+        themeBtn.textContent = "☀️";
+
+        localStorage.setItem(
+            "portfolioTheme",
+            "dark"
+        );
 
     }
 
